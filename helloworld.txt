@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿hello world
 
 你好世界
@@ -5,3 +6,8 @@
 fuck world
 new branch
 new new
+=======
+﻿this is github test
+
+你好世界
+>>>>>>> parent of 42f3261... 第一次删除
