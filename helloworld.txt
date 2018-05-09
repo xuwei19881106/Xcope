@@ -2,10 +2,6 @@
 
 你好世界
 
-<<<<<<< HEAD
 fuck world
 new branch
 new new
-=======
-fuck world
->>>>>>> parent of 0e2bfd6... new
