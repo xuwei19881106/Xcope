@@ -1,3 +1,4 @@
+/*此文件包含大部分用户需要用到的接口 */
 #include "ScoUser.h"
 #include "assertEx.h"
 #include <String.h>
