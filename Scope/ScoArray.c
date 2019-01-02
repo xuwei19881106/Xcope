@@ -4,13 +4,13 @@
 #include "assertEx.h"
 DEFINE_THIS_MODULE(ScoArray.c)
 
-/* ç”¨äºå®æ—¶ä¿å­˜æ•°æ®çš„å…¨å±€æ•°ç»„ -------------------------------------------------*/
+/* ÓÃÓÚÊµÊ±±£´æÊı¾İµÄÈ«¾ÖÊı×é -------------------------------------------------*/
 Uint16 scopeArray[SCOPE_MAX_CHN][SCOPE_CHN_PTS];
 
-/* ç”¨äºæ“ä½œå…¨å±€æ•°ç»„çš„æ§åˆ¶å— ---------------------------------------------------*/
+/* ÓÃÓÚ²Ù×÷È«¾ÖÊı×éµÄ¿ØÖÆ¿é ---------------------------------------------------*/
 ScoArrayPCB scpAryPcb;
 
-/* åˆå§‹åŒ–å‡½æ•°ï¼Œä¸»è¦ç”¨äºå°†å†…å­˜ç½®ä¸º0 --------------------------------------------*/
+/* ³õÊ¼»¯º¯Êı£¬Ö÷ÒªÓÃÓÚ½«ÄÚ´æÖÃÎª0 --------------------------------------------*/
 void ScoArray_init(void) {
     bzero((Uint8 *)&scpAryPcb, sizeof(ScoArrayPCB));
     scpAryPcb.isFulled = false;
@@ -24,24 +24,24 @@ void ScoArray_init(void) {
 }
 
 Uint16 ScoArray_refresh(Uint16 *pdata, Uint8 len) {
-    /* step1: å…ˆåˆ¤æ–­ä¼ å…¥çš„æ•°æ®é•¿åº¦æ˜¯å¦åˆæ³• */
+    /* step1: ÏÈÅĞ¶Ï´«ÈëµÄÊı¾İ³¤¶ÈÊÇ·ñºÏ·¨ */
     if(len != SCOPE_MAX_CHN) {
         return resRefreshErr;
     }
 
-    /* step2: ä¸ºæ¯ä¸ªé€šé“æ›´æ–°æ•°æ®*/
+    /* step2: ÎªÃ¿¸öÍ¨µÀ¸üĞÂÊı¾İ*/
     int i;
     for(i = 0; i < SCOPE_MAX_CHN; i++){
         scopeArray[i][scpAryPcb.curPos] = *(pdata + i);
     }
 
-    /* step3: æ›´æ–°æ•°æ®å¹¶ä¸”æ£€æµ‹æ˜¯å¦éœ€è¦ç¯å› */
+    /* step3: ¸üĞÂÊı¾İ²¢ÇÒ¼ì²âÊÇ·ñĞèÒª»·»Ø */
     if(++scpAryPcb.curPos == SCOPE_CHN_PTS){
         scpAryPcb.curPos = 0;
         scpAryPcb.isFulled = true;
     }
 
-    /* step4: æ£€æµ‹æ˜¯å¦æœ‰äº‹ä»¶å‘ç”Ÿå¹¶æ£€æµ‹æ˜¯å¦åœ¨æ­¤åˆ»éœ€è¦ä¿å­˜ */
+    /* step4: ¼ì²âÊÇ·ñÓĞÊÂ¼ş·¢Éú²¢¼ì²âÊÇ·ñÔÚ´Ë¿ÌĞèÒª±£´æ */
 
 
     return 0;
@@ -49,11 +49,11 @@ Uint16 ScoArray_refresh(Uint16 *pdata, Uint8 len) {
 
 
 void ScoArray_channelLog(Uint8 chnID, Uint16 len) {
-    /* step1 å…ˆåˆ¤æ–­æˆªå–é•¿åº¦æ˜¯å¦è¶…é™ */
+    /* step1 ÏÈÅĞ¶Ï½ØÈ¡³¤¶ÈÊÇ·ñ³¬ÏŞ */
     ASSERT_EX(len <= SCOPE_CHN_PTS);
 
-    /* step2 æ‹·è´ç›¸åº”é€šé“æ•°æ® */
-    /* ä¸ºäº†é˜²æ­¢æ•°æ®å›ç»•ï¼Œåº”å½“åˆ†ä¸¤éƒ¨åˆ†COPY */
+    /* step2 ¿½±´ÏàÓ¦Í¨µÀÊı¾İ */
+    /* ÎªÁË·ÀÖ¹Êı¾İ»ØÈÆ£¬Ó¦µ±·ÖÁ½²¿·ÖCOPY */
     Uint16 part1 = 0, part2 = 0;
     if(scpAryPcb.curPos < len) {
         part1 = len - scpAryPcb.curPos;
