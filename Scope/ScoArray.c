@@ -2,7 +2,7 @@
 #include "ScoArray.h"
 #include "scopeport.h"
 #include "assertEx.h"
-/* 2019.03.14 */
+/* 2019.03.14 Git Test*/
 DEFINE_THIS_MODULE(ScoArray.c)
 
 /* 鐢ㄤ簬瀹炴椂淇濆瓨鏁版嵁鐨勫叏灞�鏁扮粍 -------------------------------------------------*/
